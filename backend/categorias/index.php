@@ -6,19 +6,20 @@
   </head>
   <body>
     <div class="goto categorialistado">
-      <form class="ir" action="categorias/" method="get">
-        <input type="submit" name="" value="Categorias">
+      <form class="ir" action="Categoria-Eliminar.php" method="get">
+        <input type="submit" name="" value="Listado">
       </form>
     </div>
     <br>
     <div class="goto categoriaform">
-      <form class="ir" action="productos/" method="get">
-        <input type="submit" name="" value="Productos">
+      <form class="ir" action="Categoria-Form.php" method="get">
+        <input type="submit" name="" value="Form">
       </form>
     </div>
+    <br>
     <div class="goto categoriaeliminar">
-      <form class="ir" action="productos/" method="get">
-        <input type="submit" name="" value="Productos">
+      <form class="ir" action="Categoria-Listado.php" method="get">
+        <input type="submit" name="" value="Listado">
       </form>
     </div>
   </body>
