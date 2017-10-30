@@ -1,13 +1,13 @@
 <?php
-include_once ($_SERVER["DOCUMENT_ROOT"] . 'model/categoria.php');
+include_once ($_SERVER["DOCUMENT_ROOT"] . '/tic-final/model/categoria.php');
 
-class personaDao {
+class CategoriasDAO {
 
     public static function ObtenerPorID($id)
     {
       try
       {
-          $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tic", "root", "root");
+          $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tp-final", "root", "root");
           $sql = $sql = "DELETE FROM categorias WHERE id = '".$id."';";
           $query = $conn->query($sql);
           $conn=null;
@@ -23,19 +23,29 @@ class personaDao {
     {
       try
       {
-          $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tic", "root", "root");
-          $sql = "SELECT * from categorias";
-          $query = $conn->query($sql);
-          $conn=null;
+          $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tp-final", "root", "root");
+          $query = "SELECT * from categorias";
+
           $categorias = array();
 
-          for ($i=0; $i < count($query); $i++)
-          {
-              $cat = new Categoria();
-              $cat->id = $query[$i]["id"];
-              $cat->nombre = $query[$i]["nombre"];
-              array_push($categorias, $cat);
+          $STH = $conn->prepare($query);
+          $STH->setFetchMode(PDO::FETCH_ASSOC);
+
+          $STH->execute();
+
+          if ($STH->rowCount() > 0) {
+              //RECORRO CADA FILA
+              while($row = $STH->fetch()) {
+
+                  $cat = new Categoria();
+                  $cat->id =$row['id'];
+                  $cat->nombre = $row['nombre'];
+                  array_push($categorias, $cat);
+              }
           }
+
+
+          $conn=null;
           return $categorias;
       }
       catch(PDOException $e)
@@ -49,7 +59,7 @@ class personaDao {
       try
       {
         echo "hola";
-        $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tic", "root", "root");
+        $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tp-final", "root", "root");
         echo "como";
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "andas";
@@ -70,7 +80,7 @@ class personaDao {
       try
       {
         echo "hola";
-        $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tic", "root", "root");
+        $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tp-final", "root", "root");
         echo "como";
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "andas";
@@ -92,7 +102,7 @@ class personaDao {
       try
       {
         $id = $_POST["id"];
-        $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tic", "root", "root");
+        $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tp-final", "root", "root");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         if ($id != null)
         {
