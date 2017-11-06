@@ -7,7 +7,7 @@
   <body>
     <div class="goto categorialistado">
       <form class="ir" action="Categoria-Eliminar.php" method="get">
-        <input type="submit" name="" value="Listado">
+        <input type="submit" name="" value="Eliminar">
       </form>
     </div>
     <br>

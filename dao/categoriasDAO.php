@@ -8,10 +8,23 @@ class CategoriasDAO {
       try
       {
           $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tp-final", "root", "root");
-          $sql = $sql = "DELETE FROM categorias WHERE id = '".$id."';";
-          $query = $conn->query($sql);
-          $conn=null;
-          return $query;
+          $sql = "SELECT * FROM Categorias WHERE id = ".$id.";";
+          $STH = $conn->prepare($sql);
+          $STH->setFetchMode(PDO::FETCH_ASSOC);
+          $STH->execute();
+          $categoria = array();
+
+          if ($STH->rowCount() > 0) {
+              //RECORRO CADA FILA
+              while($row = $STH->fetch()) {
+
+                  $cat = new Categoria();
+                  $cat->id =$row['id'];
+                  $cat->nombre = $row['nombre'];
+                  array_push($categoria, $cat);
+              }
+          }
+          return $categoria;
       }
       catch(PDOException $e)
       {
@@ -97,28 +110,19 @@ class CategoriasDAO {
 
     }// modificar
 
-    public static function eliminar($id, $item)
+    public static function eliminar($id)
     {
       try
       {
-        $id = $_POST["id"];
         $conn = new PDO("mysql:host=127.0.0.1;port=3306;dbname=tp-final", "root", "root");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        if ($id != null)
-        {
-          $sql = $sql = "DELETE FROM categorias WHERE id = '".$id."';";
-        }
-        else
-        {
-          $sql = $sql = "DELETE FROM categorias WHERE id = '".$item->id."';";
-        }
+        $sql = "DELETE FROM categorias WHERE id = ".$id.";";
+
         $conn->exec($sql);
-        echo true;
       }
       catch(PDOException $e)
       {
            //echo $sql . "<br>" . $e->getMessage();
-           echo false;
       }
     }// eliminar
 

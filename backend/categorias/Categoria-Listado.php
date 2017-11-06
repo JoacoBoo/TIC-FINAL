@@ -23,6 +23,8 @@
       <tbody>
         <td><?php echo $cat->id; ?></td>
         <td><?php echo $cat->nombre; ?></td>
+        <td><a href="Categoria-Form.php?id=<?php echo $cat->id; ?>">Editar</a></td>
+        <td><a href="Categoria-Eliminar.php?id=<?php echo $cat->id; ?>"> - Eliminar</a></td>
       </tbody>
       <?php
     }
