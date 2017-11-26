@@ -27,7 +27,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
+
       </div>
     </nav>
 
@@ -38,8 +38,9 @@
 
         <div class="col-lg-3">
           <h1 class="my-4">La tiendita de 6IB</h1>
+          <h2>TODOS LOS PRODUCTOS</h2>
           <div class="list-group">
-            <a href="productos.php" class="list-group-item">Todos los productos</a>
+            <a href="index.php" class="list-group-item">Productos destacados</a>
           </div>
         </div>
         <!-- /.col-lg-3 -->
@@ -55,10 +56,11 @@ $productos = ProductosDAO::ObtenerTodos();
 
 foreach ($productos as $pro)
 {
-     if ($pro->destacado >0) {
+
 
 ?>
 
+<a href="proesp.php?id=<?php echo $pro->id ?>">
           <div class="card mt-4">
             <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
             <div class="card-body">
@@ -69,11 +71,11 @@ foreach ($productos as $pro)
 
             </div>
           </div>
+          </a>
           <br>
           <br>
           <?php
                }
-          }
            ?>
           <!-- /.card -->
 

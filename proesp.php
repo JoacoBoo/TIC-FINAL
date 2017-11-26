@@ -27,7 +27,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        
+
       </div>
     </nav>
 
@@ -38,8 +38,9 @@
 
         <div class="col-lg-3">
           <h1 class="my-4">La tiendita de 6IB</h1>
+          <h2>Visualizador</h2>
           <div class="list-group">
-            <a href="productos.php" class="list-group-item">Todos los productos</a>
+            <a href="index.php" class="list-group-item">Productos destacados</a>
           </div>
         </div>
         <!-- /.col-lg-3 -->
@@ -50,31 +51,26 @@
 include_once ('/dao/ProductosDAO.php');
 include_once ('model/producto.php');
 
+$id = $_GET["id"];
+$pro = ProductosDAO::ObtenerPorID($id);
+var_dump($pro[0]);
 
-$productos = ProductosDAO::ObtenerTodos();
-
-foreach ($productos as $pro)
-{
-     if ($pro->destacado >0) {
 
 ?>
 
           <div class="card mt-4">
             <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
             <div class="card-body">
-              <h3 class="card-title"><?php echo $pro->nombre ?></h3>
-              <h4>$<?php echo $pro->precio ?></h4>
-              <p class="card-text"><?php echo $pro->descripcion ?></p>
-              <span class="text-warning">Codigo: <?php echo $pro->codigo ?></span>
+              <h3 class="card-title"><?php echo $pro[0]->nombre ?></h3>
+              <h4>$<?php echo $pro[0]->precio ?></h4>
+              <p class="card-text"><?php echo $pro[0]->descripcion ?></p>
+              <span class="text-warning">Codigo: <?php echo $pro[0]->codigo ?></span>
 
             </div>
           </div>
           <br>
           <br>
-          <?php
-               }
-          }
-           ?>
+
           <!-- /.card -->
 
 
