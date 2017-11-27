@@ -7,7 +7,7 @@ include_once ($_SERVER["DOCUMENT_ROOT"] . '/tic-final/model/categoria.php');
 $cat = new Categoria();
 $cat->id = $_GET["id"];
 
-CategoriasDAO::eliminar($cat);
+CategoriasDAO::eliminar($cat->id);
 
 
 header("Location: Categoria-Listado.php");
