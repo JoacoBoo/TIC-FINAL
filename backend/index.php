@@ -1,3 +1,5 @@
+<?php require("checklogged.php") ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,6 +16,11 @@
     <div class="goto productoform">
       <form class="ir" action="productos/" method="get">
         <input type="submit" name="" value="Productos">
+      </form>
+      <br>
+      <br>
+      <form class="ir" action="cerrar.php" method="get">
+        <input type="submit" name="" value="Cerrar Sesion">
       </form>
     </div>
   </body>

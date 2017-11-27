@@ -1,3 +1,5 @@
+<?php include_once($_SERVER["DOCUMENT_ROOT"] . "/tic-final/backend/checklogged.php") ?>
+
 <!DOCTYPE html>
 <html>
   <head>
